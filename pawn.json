@@ -1,0 +1,8 @@
+{
+	"user": "knryuu",
+	"repo": "pawnplus-mysql-next",
+	"dependencies": [
+		"sampctl/samp-stdlib",
+		"IS4Code/PawnPlus:v1.5.1",
+	]
+}
