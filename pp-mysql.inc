@@ -37,7 +37,7 @@ static Task:pp_handle_sql__({MySQL, ORM}:handle, const query[] = "", option = 0,
 			case 4: ret = orm_delete(ORM:handle, callback_name, "dd",  _:callback_handler, _:task_handle);
 			default:
 			{
-			    pawn_unregister_callback(callback_handler);
+			        pawn_unregister_callback(callback_handler);
 				task_set_error_ms(the_task, amx_err_exit, 0);
 				return the_task;
 			}
