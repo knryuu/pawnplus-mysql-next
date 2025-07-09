@@ -20,18 +20,18 @@ static Task:pp_handle_sql__({MySQL, ORM}:handle, const query[] = "", option = 0,
 	callback_name = amx_encode_value_public_name("__ppAsyncMySQLHandler", task_handle);
 	new CallbackHandler:callback_handler = pawn_register_callback("OnQueryError", "__ppAsyncMySQLError", handler_default, "ed", task_handle);
 
-    // Yield early
-    task_set_yielded(the_task);
+	// Yield early
+	task_set_yielded(the_task);
 
 	new ret;
 	if (tag == tagof(MySQL:))
 	{
-        Logger_Dbg("Verbose", "Executing cache query...");
+		Logger_Dbg("Verbose", "Executing cache query...");
 		ret = option ? (mysql_pquery(handle, query, callback_name, "dd", _:callback_handler, _:task_handle)) : (mysql_tquery(handle, query, callback_name, "dd", _:callback_handler, _:task_handle));
 	}
 	else
 	{
-        Logger_Dbg("Verbose", "Executing orm functions...");
+		Logger_Dbg("Verbose", "Executing orm functions...");
 		switch (option)
 		{
 			case 0: ret = orm_load(ORM:handle, callback_name, "dd", _:callback_handler, _:task_handle);
@@ -50,7 +50,7 @@ static Task:pp_handle_sql__({MySQL, ORM}:handle, const query[] = "", option = 0,
 
 	if (ret)
 	{
-        Logger_Dbg("Verbose", "Acquiring handle...");
+		Logger_Dbg("Verbose", "Acquiring handle...");
 		handle_acquire(task_handle);
 	}
 	else
@@ -121,7 +121,7 @@ stock Task:orm_delete_async(ORM:id)
 
 public OnQueryError(errorid, const error[], const callback[], const query[], MySQL:handle)
 {
-    return 1;
+	return 1;
 }
 
 forward __ppAsyncMySQLError(CallbackHandler:callback_handler, Handle:task_handle, errorid, const error[], const callback[], const query[], MySQL:handle);
