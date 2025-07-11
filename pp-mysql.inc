@@ -26,12 +26,10 @@ static Task:pp_handle_sql__({MySQL, ORM}:handle, const query[] = "", option = 0,
 	new ret;
 	if (tag == tagof(MySQL:))
 	{
-		Logger_Dbg("Verbose", "Executing cache query...");
 		ret = option ? (mysql_pquery(handle, query, callback_name, "dd", _:callback_handler, _:task_handle)) : (mysql_tquery(handle, query, callback_name, "dd", _:callback_handler, _:task_handle));
 	}
 	else
 	{
-		Logger_Dbg("Verbose", "Executing orm functions...");
 		switch (option)
 		{
 			case 0: ret = orm_load(ORM:handle, callback_name, "dd", _:callback_handler, _:task_handle);
@@ -50,7 +48,6 @@ static Task:pp_handle_sql__({MySQL, ORM}:handle, const query[] = "", option = 0,
 
 	if (ret)
 	{
-		Logger_Dbg("Verbose", "Acquiring handle...");
 		handle_acquire(task_handle);
 	}
 	else
